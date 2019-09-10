@@ -799,6 +799,8 @@ public:
             auto ruleObject = new DynamicRule(rule);
             all_rules_.emplace_back(ruleObject);
 
+            internal_add_rule_object(rule, ruleObject);
+
             return *ruleObject;
         }
 
@@ -809,6 +811,8 @@ public:
 
             auto ruleObject = new RuleT(rule);
             all_rules_.emplace_back(ruleObject);
+
+            internal_add_rule_object(rule, ruleObject);
 
             return *ruleObject;
         }
@@ -846,7 +850,6 @@ public:
                 if (rule)
                 {
                     rule->validate();
-                    internal_add_rule_object(rule->rule(), rule.get());
                 }
             }
             for(auto& per_method:per_methods_)
